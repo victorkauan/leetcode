@@ -4,18 +4,12 @@
  * @return {number[]}
  */
 function twoSum(nums, target) {
+    const numMap = new Map();
     for (let i = 0; i < nums.length; i++) {
-        for (let j = 0; j < nums.length; j++) {
-            if (i === j) {
-                continue;
-            }
-
-            const sum = nums[i] + nums[j];
-            if (sum === target) {
-                return [i, j];
-            }
+        const complement = target - nums[i];
+        if (numMap.has(complement)) {
+            return [numMap.get(complement), i];
         }
+        numMap.set(nums[i], i);
     }
-
-    throw new Error("Invalid nums parameter");
 }
